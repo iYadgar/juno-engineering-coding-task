@@ -113,7 +113,7 @@ const usersIds = [
     "70ef599e5eca171b2bce84dd"
 ];
 
-function setTimeoutPromise(timeout, values) {
+export function setTimeoutPromise(timeout, values) {
     return new Promise((resolve, reject) => {
         setTimeout(() => resolve(values), timeout);
     });
