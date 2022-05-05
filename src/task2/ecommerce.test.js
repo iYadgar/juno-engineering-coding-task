@@ -1,6 +1,7 @@
-import {allIds, fetchOrderById}                                                       from "../api";
-import {fetchAllOrders, bucketOrdersByUsers, getLast2WeeksOrders, bucketOrdersByDate} from "./ecommerce.js";
-import {isBefore}                                                                     from "date-fns";
+const {allIds, fetchOrderById} = require("../api/ecommerce-helpers");
+const {fetchAllOrders, bucketOrdersByUsers, getLast2WeeksOrders, bucketOrdersByDate} =
+		  require("./ecommerce.js");
+const {isBefore} = require("date-fns");
 
 const ORDER_ID = "70ef599e5eca171b2bce84d1"
 let MOCK_ORDERS = []
@@ -30,8 +31,8 @@ test("Ecommerce - bucketOrdersByDate", async () => {
 	twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14)
 	const newOrder = MOCK_ORDERS.find((order) => !isBefore(order.timestamp, twoWeeksAgo))
 	const oldOrder = MOCK_ORDERS.find((order) => isBefore(order.timestamp, twoWeeksAgo))
-	if (newOrder){
-	expect(ordersByDate[new Date(newOrder.timestamp).toDateString()]?.length).toBeTruthy()
+	if (newOrder) {
+		expect(ordersByDate[new Date(newOrder.timestamp).toDateString()]?.length).toBeTruthy()
 	}
 	expect(ordersByDate[new Date(oldOrder.timestamp).toDateString()]?.length).toBeFalsy()
 })
